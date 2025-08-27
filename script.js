@@ -87,7 +87,7 @@ callBtn.forEach(btn => {
             <div class="p-3">
                     <div class="flex justify-between items-center p-3 bg-[#fafafa] rounded-xl">
                         <div>
-                            <h1>${data.name}</h1>
+                            <h1 class="font-semibold">${data.name}</h1>
                             <p>${data.num}</p>
                         </div>
                         <p>${data.date}</p>
