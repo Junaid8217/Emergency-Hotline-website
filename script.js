@@ -1,3 +1,7 @@
+
+const callHistoryData = []
+
+
 // Heart Icon Feature
 
 const buttons = document.querySelectorAll('.heart-icon')
@@ -49,9 +53,10 @@ callBtn.forEach(btn => {
         const ok = confirm(`Do you want to call ${mainTitle} ${number}?`);
 
         if (ok) {
-            
+            // Deduct 20 coins if OK clicked
             const coinDisplay = document.getElementById('coin-count');
             let coins = parseInt(coinDisplay.innerText) || 0;
+
 
             if (coins < 20) {
                 alert("Insufficient coins!");
@@ -60,7 +65,46 @@ callBtn.forEach(btn => {
             else {
                 coins -= 20;
                 coinDisplay.innerText = coins;
+
+
+                const data = {
+                    name: mainTitle,
+                    num: number,
+                    date: new Date().toLocaleTimeString()
+                }
+
+                callHistoryData.push(data)
+                console.log(callHistoryData)
+
+
+                const callHistoryContainer = document.getElementById("call-history-container")
+
+                callHistoryContainer.innerText = ''
+
+                for (const data of callHistoryData) {
+                    const div = document.createElement('div')
+                    div.innerHTML = `
+            <div class="p-3">
+                    <div class="flex justify-between items-center p-3 bg-[#fafafa] rounded-xl">
+                        <div>
+                            <h1>${data.name}</h1>
+                            <p>${data.num}</p>
+                        </div>
+                        <p>${data.date}</p>
+                    </div>
+                </div>
+            `
+                    callHistoryContainer.appendChild(div)
+
+                }
+
+
+
             }
         }
+
+
+
+
     })
 })
