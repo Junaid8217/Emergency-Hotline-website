@@ -97,14 +97,47 @@ callBtn.forEach(btn => {
                     callHistoryContainer.appendChild(div)
 
                 }
+            }
+        }
+    })
+})
 
 
+// Copy button feature
+const copyButtons = document.querySelectorAll('.copy-btn')
 
+copyButtons.forEach(btn => {
+    btn.addEventListener("mouseover", function () {
+        btn.style.backgroundColor = "gray";
+        btn.style.cursor = "pointer";
+    });
+
+    btn.addEventListener("mouseout", function () {
+        btn.style.backgroundColor = "";
+        btn.style.cursor = "";
+    });
+
+    btn.addEventListener("click", async function () {
+
+        const card = btn.closest('.card');
+        if (!card) return;
+
+        const h1 = card.querySelectorAll('h1')
+        const number = h1[1]?.innerText || "";
+
+        if (number) {
+            try {
+                await navigator.clipboard.writeText(number);
+                alert(`Copied: ${number}`);
+            } catch (err) {
+                console.error("Copy failed", err);
             }
         }
 
 
-
-
-    })
-})
+        const copyDisplay = document.getElementById('copy-display')
+        let count = parseInt(copyDisplay.innerText);
+        count++;
+        copyDisplay.innerText = count;
+    });
+});
