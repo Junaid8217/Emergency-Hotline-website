@@ -1,5 +1,5 @@
 
-const callHistoryData = []
+let callHistoryData = []
 
 
 // Heart Icon Feature
@@ -141,3 +141,23 @@ copyButtons.forEach(btn => {
         copyDisplay.innerText = count;
     });
 });
+
+
+// Clear Button feature
+document.getElementById('clear-button').addEventListener('mouseover', function () {
+    const clearButton = document.getElementById('clear-button')
+    clearButton.style.backgroundColor = "gray";
+})
+
+document.getElementById('clear-button').addEventListener('mouseout', function () {
+    const clearButton = document.getElementById('clear-button')
+    clearButton.style.backgroundColor = "";
+})
+
+
+document.getElementById('clear-button').addEventListener('click', function () {
+    const callHistoryContainer = document.getElementById("call-history-container")
+    callHistoryContainer.innerHTML = ""
+    callHistoryData = []
+    console.log('clear')
+})
